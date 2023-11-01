@@ -74,11 +74,11 @@ class User
         }
         $where = $where ? 'WHERE ' . implode(' AND ', $where) : '';
         // info
-        $q = DB::query('SELECT plot_id, first_name, last_name, phone, email, last_login
+        $q = DB::query('SELECT user_id, plot_id, first_name, last_name, phone, email, last_login
             FROM users ' . $where . ' ORDER BY user_id LIMIT ' . $offset . ', ' . $limit . ';') or die(DB::error());
         while ($row = DB::fetch_row($q)) {
             $items[] = [
-                'id' => (int) $row['id'],
+                'user_id' => (int) $row['user_id'],
                 'plot_id' => (int) $row['plot_id'],
                 'first_name' => $row['first_name'],
                 'last_name' => $row['last_name'],
