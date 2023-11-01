@@ -78,7 +78,8 @@ class User
             FROM users ' . $where . ' ORDER BY user_id LIMIT ' . $offset . ', ' . $limit . ';') or die(DB::error());
         while ($row = DB::fetch_row($q)) {
             $items[] = [
-                'id' => (int) $row['plot_id'],
+                'id' => (int) $row['id'],
+                'plot_id' => (int) $row['plot_id'],
                 'first_name' => $row['first_name'],
                 'last_name' => $row['last_name'],
                 'phone' => $row['phone'],
