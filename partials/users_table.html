@@ -10,7 +10,7 @@
   </tr>
   {section name=i loop=$users}
   <tr>
-    <td>{$users[i].id}</td>
+    <td>{$users[i].plot_id}</td>
     <td>{$users[i].first_name}</td>
     <td>{$users[i].last_name}</td>
     <td>{$users[i].phone}</td>
@@ -23,7 +23,7 @@
         onclick="common.menu_popup_toggle(this, event);"
       >
         <div class="menu_popup">
-          <div onclick="common.plot_edit_window({$users[i].id}, event);">
+          <div onclick="common.plot_edit_window({$users[i].user_id}, event);">
             Edit
           </div>
         </div>
