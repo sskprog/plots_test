@@ -84,7 +84,7 @@ class User
                 'last_name' => $row['last_name'],
                 'phone' => $row['phone'],
                 'email' => $row['email'],
-                'last_login' => date('Y/m/d', $row['last_login'])
+                'last_login' => date('Y/m/d H:m:s', $row['last_login'])
             ];
         }
         // paginator
