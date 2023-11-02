@@ -215,6 +215,17 @@ let common = {
       common.modal_show(400, result.html);
     });
   },
+  user_delete: (user_id = 0) => {
+    let data = {
+      user_id: user_id,
+      offset: global.offset,
+    };
+    let location = { dpt: 'user', act: 'delete' };
+    request({ location: location, data: data }, (result) => {
+      common.modal_hide();
+      html('table', result.html);
+    });
+  },
 };
 
 add_event(document, 'DOMContentLoaded', common.init);
