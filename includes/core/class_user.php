@@ -174,6 +174,7 @@ class User
         HTML::assign('users', $info['items']);
         return ['html' => HTML::fetch('./partials/users_table.html'), 'paginator' => $info['paginator']];
     }
+
     public static function user_delete_window($d = [])
     {
         $user_id = isset($d['user_id']) && is_numeric($d['user_id']) ? $d['user_id'] : 0;
