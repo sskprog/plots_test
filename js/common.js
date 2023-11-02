@@ -170,6 +170,7 @@ let common = {
       html('table', result.html);
     });
   },
+
   //users
 
   user_edit_window: (user_id, e) => {
@@ -182,6 +183,24 @@ let common = {
     // call
     request({ location: location, data: data }, (result) => {
       common.modal_show(400, result.html);
+    });
+  },
+
+  user_edit_update: (user_id = 0) => {
+    // vars
+    let data = {
+      user_id: user_id,
+      first_name: gv('first_name'),
+      last_name: gv('last_name'),
+      phone: gv('phone'),
+      email: gv('email'),
+      offset: global.offset,
+    };
+    let location = { dpt: 'user', act: 'edit_update' };
+    // call
+    request({ location: location, data: data }, (result) => {
+      common.modal_hide();
+      html('table', result.html);
     });
   },
 };
