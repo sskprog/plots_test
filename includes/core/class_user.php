@@ -181,4 +181,8 @@ class User
         HTML::assign('user', User::user_info_full($user_id));
         return ['html' => HTML::fetch('./partials/user_delete.html')];
     }
+    public static function user_delete($d = []){
+        $offset = isset($d['offset']) ? preg_replace('~\D+~', '', $d['offset']) : 0;
+        return User::users_fetch(['offset' => $offset]);
+    }
 }
