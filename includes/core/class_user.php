@@ -98,4 +98,37 @@ class User
         // output
         return ['items' => $items, 'paginator' => $paginator];
     }
+
+    public static function user_info_full($user_id) {
+        $q = DB::query("SELECT user_id, first_name, last_name, phone, email
+            FROM users WHERE user_id='".$user_id."' LIMIT 1;") or die (DB::error());
+        if ($row = DB::fetch_row($q)) {
+            return [
+                'id' => (int) $row['user_id'],
+                'first_name' => $row['first_name'],
+                'last_name' => $row['last_name'],
+                'phone' => $row['phone'],
+                'email' => $row['email'],
+            ];
+        } else {
+            return [
+                'id' => 0,
+                'first_name' => 0,
+                'last_name' => 0,
+                'phone' => '',
+                'email' => '',
+            ];
+        }
+    }
+
+    public static function user_edit_window($d = [])
+    {
+        $user_id = isset($d['user_id']) && is_numeric($d['user_id']) ? $d['user_id'] : 0;
+        HTML::assign('user', User::user_info_full($user_id));
+        return ['html' => HTML::fetch('./partials/user_edit.html')];
+    }
+
+    public static function user_edit_update($d = [])
+    {
+    }
 }
