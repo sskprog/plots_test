@@ -150,7 +150,7 @@ class User
             $set = implode(', ', $set);
             DB::query('UPDATE users SET ' . $set . " WHERE user_id='" . $user_id . "' LIMIT 1;") or die(DB::error());
         } else {
-            DB::query("INSERT INTO plots (
+            DB::query("INSERT INTO users (
                 first_name,
                 last_name,
                 phone,
