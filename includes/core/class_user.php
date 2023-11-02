@@ -99,6 +99,7 @@ class User
         return ['items' => $items, 'paginator' => $paginator];
     }
 
+    // full information about user for editing
     public static function user_info_full($user_id) {
         $q = DB::query("SELECT user_id, first_name, last_name, phone, email
             FROM users WHERE user_id='".$user_id."' LIMIT 1;") or die (DB::error());
