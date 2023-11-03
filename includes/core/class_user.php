@@ -75,7 +75,7 @@ class User
         if ($search) {
             $where[] = "(email LIKE '%" . $search . "%')";
             $where[] = "(phone LIKE '%" . $search . "%')";
-            $where[] = "(last_name LIKE '%" . $search . "%')";
+            $where[] = "(first_name LIKE '%" . $search . "%')";
         }
         $where = $where ? 'WHERE ' . implode(' OR ', $where) : '';
         // info
