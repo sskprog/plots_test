@@ -84,7 +84,7 @@ class User
         while ($row = DB::fetch_row($q)) {
             $items[] = [
                 'user_id' => (int) $row['user_id'],
-                'plot_id' => (int) $row['plot_id'],
+                'plot_id' => $row['plot_id'],
                 'first_name' => $row['first_name'],
                 'last_name' => $row['last_name'],
                 'phone' => $row['phone'],
@@ -107,7 +107,7 @@ class User
     // full information about user for editing
     public static function user_info_full($user_id)
     {
-        $q = DB::query("SELECT user_id, first_name, last_name, phone, email
+        $q = DB::query("SELECT user_id, first_name, last_name, phone, email, plot_id
             FROM users WHERE user_id='" . $user_id . "' LIMIT 1;") or die(DB::error());
         if ($row = DB::fetch_row($q)) {
             return [
@@ -116,6 +116,7 @@ class User
                 'last_name' => $row['last_name'],
                 'phone' => $row['phone'],
                 'email' => $row['email'],
+                'plot_id' => $row['plot_id'],
             ];
         } else {
             return [
@@ -124,6 +125,7 @@ class User
                 'last_name' => 0,
                 'phone' => '',
                 'email' => '',
+                'plot_id' => '',
             ];
         }
     }
@@ -143,6 +145,7 @@ class User
         $last_name = isset($d['last_name']) && trim($d['last_name']) ? trim($d['last_name']) : '';
         $phone = isset($d['phone']) ? preg_replace('~\D+~', '', $d['phone']) : 0;
         $email = isset($d['email']) && trim($d['email']) ? strtolower(trim($d['email'])) : '';
+        $plot_id = isset($d['plot_id']) && trim($d['plot_id']) ? trim($d['plot_id']) : '';
         $offset = isset($d['offset']) ? preg_replace('~\D+~', '', $d['offset']) : 0;
         // update
         if ($user_id) {
@@ -151,6 +154,7 @@ class User
             $set[] = "last_name='" . $last_name . "'";
             $set[] = "phone='" . $phone . "'";
             $set[] = "email='" . $email . "'";
+            $set[] = "plot_id='" . $plot_id . "'";
             $set[] = "updated='" . Session::$ts . "'";
             $set = implode(', ', $set);
             DB::query('UPDATE users SET ' . $set . " WHERE user_id='" . $user_id . "' LIMIT 1;") or die(DB::error());
@@ -160,12 +164,14 @@ class User
                 last_name,
                 phone,
                 email,
+                plot_id
                 updated
             ) VALUES (
                 '" . $first_name . "',
                 '" . $last_name . "',
                 '" . $phone . "',
                 '" . $email . "',
+                '" . $plot_id . "',
                 '" . Session::$ts . "'
             );") or die(DB::error());
         }
