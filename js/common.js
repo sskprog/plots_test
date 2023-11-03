@@ -197,6 +197,14 @@ let common = {
       plot_id: gv('plot_id'),
       offset: global.offset,
     };
+    if (
+      data.first_name.trim() === '' ||
+      data.last_name.trim() === '' ||
+      data.phone.trim() === '' ||
+      data.email.trim() === ''
+    ) {
+      return false;
+    }
     let location = { dpt: 'user', act: 'edit_update' };
     // call
     request({ location: location, data: data }, (result) => {
@@ -204,6 +212,7 @@ let common = {
       html('table', result.html);
     });
   },
+
   user_delete_window: (user_id, e) => {
     // actions
     cancel_event(e);
