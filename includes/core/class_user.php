@@ -73,9 +73,11 @@ class User
         // where
         $where = [];
         if ($search) {
-            $where[] = "LIKE '%" . $search . "%'";
+            $where[] = "(email LIKE '%" . $search . "%')";
+            $where[] = "(phone LIKE '%" . $search . "%')";
+            $where[] = "(last_name LIKE '%" . $search . "%')";
         }
-        $where = $where ? 'WHERE ' . implode(' AND ', $where) : '';
+        $where = $where ? 'WHERE ' . implode(' OR ', $where) : '';
         // info
         $q = DB::query('SELECT user_id, plot_id, first_name, last_name, phone, email, last_login
             FROM users ' . $where . ' ORDER BY user_id LIMIT ' . $offset . ', ' . $limit . ';') or die(DB::error());
