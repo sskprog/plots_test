@@ -121,8 +121,8 @@ class User
         } else {
             return [
                 'id' => 0,
-                'first_name' => 0,
-                'last_name' => 0,
+                'first_name' => '',
+                'last_name' => '',
                 'phone' => '',
                 'email' => '',
                 'plot_id' => '',
@@ -164,7 +164,7 @@ class User
                 last_name,
                 phone,
                 email,
-                plot_id
+                plot_id,
                 updated
             ) VALUES (
                 '" . $first_name . "',
