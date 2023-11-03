@@ -37,7 +37,7 @@ class User
         // vars
         $items = [];
         // info
-        // Этот запрос неверный, будет возвращать все номера содержащие number
+        // Этот запрос неверный, будет возвращать все номера содержащие number, а не только равные number
         // $q = DB::query("SELECT user_id, plot_id, first_name, email, phone
         //     FROM users WHERE plot_id LIKE '%" . $number . "%' ORDER BY user_id;") or die(DB::error());
         $q = DB::query("SELECT user_id, plot_id, first_name, email, phone
