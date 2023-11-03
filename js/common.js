@@ -194,6 +194,7 @@ let common = {
       last_name: gv('last_name'),
       phone: gv('phone'),
       email: gv('email'),
+      plot_id: gv('plot_id'),
       offset: global.offset,
     };
     let location = { dpt: 'user', act: 'edit_update' };
