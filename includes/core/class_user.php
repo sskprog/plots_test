@@ -41,7 +41,7 @@ class User
         // $q = DB::query("SELECT user_id, plot_id, first_name, email, phone
         //     FROM users WHERE plot_id LIKE '%" . $number . "%' ORDER BY user_id;") or die(DB::error());
         $q = DB::query("SELECT user_id, plot_id, first_name, email, phone
-            FROM users WHERE FIND_IN_SET('$number', plot_id)") or die(DB::error());
+            FROM users WHERE FIND_IN_SET('$number', plot_id) ORDER BY user_id;") or die(DB::error());
         while ($row = DB::fetch_row($q)) {
             $plot_ids = explode(',', $row['plot_id']);
             $val = false;
